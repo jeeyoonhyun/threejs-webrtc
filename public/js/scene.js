@@ -55,8 +55,8 @@ class Scene {
     window.addEventListener("keyup", (e) => this.onKeyUp(e), false);
 
     // Helpers
-    this.scene.add(new THREE.GridHelper(500, 500, 0x151545, 0x151545));
-    this.scene.add(new THREE.AxesHelper(10));
+    // this.scene.add(new THREE.GridHelper(500, 500, 0x151545, 0x151545));
+    // this.scene.add(new THREE.AxesHelper(10));
 
     this.addLights();
     createEnvironment(this.scene);
@@ -87,7 +87,9 @@ class Scene {
 
     // https://threejs.org/docs/index.html#api/en/objects/Group
     this.playerGroup = new THREE.Group();
-    this.playerGroup.position.set(0, 0.5, 0);
+    // initialize player position
+    this.playerGroup.position.set(Math.random(50), 0.5, Math.random(50));
+
     this.playerGroup.add(_head);
 
     // add group to scene
