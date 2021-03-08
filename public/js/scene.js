@@ -26,12 +26,9 @@ class Scene {
 
     //THREE Camera
     this.camera = new THREE.PerspectiveCamera(
-      50,
-      this.width / this.height,
-      0.1,
-      5000
+      70, window.innerWidth / window.innerHeight, 1, 10000
     );
-    this.camera.position.set(0, 3, 6);
+    this.camera.position.set(0, 3, 20);
     this.scene.add(this.camera);
 
     // create an AudioListener and add it to the camera
@@ -42,7 +39,7 @@ class Scene {
     this.renderer = new THREE.WebGLRenderer({
       antialiasing: true,
     });
-    this.renderer.setClearColor(new THREE.Color("lightblue"));
+    this.renderer.setClearColor(new THREE.Color("#03031C"));
     this.renderer.setSize(this.width, this.height);
 
     // add controls:
@@ -58,7 +55,7 @@ class Scene {
     window.addEventListener("keyup", (e) => this.onKeyUp(e), false);
 
     // Helpers
-    this.scene.add(new THREE.GridHelper(500, 500));
+    this.scene.add(new THREE.GridHelper(500, 500, 0x151545, 0x151545));
     this.scene.add(new THREE.AxesHelper(10));
 
     this.addLights();
@@ -74,7 +71,7 @@ class Scene {
   // Lighting 💡
 
   addLights() {
-    this.scene.add(new THREE.AmbientLight(0xffffe6, 0.7));
+    this.scene.add(new THREE.AmbientLight(0xffffff, 0.7));
   }
 
   //////////////////////////////////////////////////////////////////////
