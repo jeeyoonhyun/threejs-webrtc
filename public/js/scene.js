@@ -223,7 +223,7 @@ class Scene {
     updateEnvironment();
 
     if (this.frameCount % 25 === 0) {
-      this.updateClientVolumes();
+      // this.updateClientVolumes(); //turns on spatial sound
       this.movementCallback();
     }
 
