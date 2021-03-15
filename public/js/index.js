@@ -370,3 +370,16 @@ function removeClientVideoElementAndCanvas(_id) {
     videoEl.remove();
   }
 }
+
+function triggerEvent() {
+  if (glScene.playerGroup.position === clients[Object.keys(clients)[0]].desiredPosition) {
+    let isCollided = true;  
+  } else {
+    let isCollided = false;
+  }
+  if (isCollided) {
+    console.log('player collided!')
+  } else {
+    console.log('not collided')
+  }
+}
