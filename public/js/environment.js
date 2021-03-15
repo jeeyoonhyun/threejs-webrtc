@@ -50,10 +50,9 @@ function createEnvironment(scene) {
 
 
   for (let i=0; i<20; i++) {
-    
     landmark = new THREE.Mesh(geo[Math.floor(Math.random() * geo.length)], tex[Math.floor(Math.random() * tex.length)]);
     landmark.position.set(Math.random() * (max*4 - min*4) + min, Math.random() * 32, -Math.random() * max*4);
-    landmark.rotation.set(new THREE.Vector3( Math.random() * Math.PI / 2, Math.random() * Math.PI / 2, Math.random() * Math.PI / 2));
+    // landmark.rotation.set(new THREE.Vector3( Math.random() * Math.PI / 2, Math.random() * Math.PI / 2, Math.random() * Math.PI / 2));
     scene.add(landmark);
   }
 
