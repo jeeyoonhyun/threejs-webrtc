@@ -40,7 +40,7 @@ function createEnvironment(scene) {
   //landmarks
   let planetTexture = new THREE.TextureLoader().load("../assets/texture0.png");
   const planetMaterial = new THREE.MeshBasicMaterial( { map: planetTexture } );
-  geo.push(new THREE.TorusGeometry( Math.random()*100, 3, 6, 16));
+  geo.push(new THREE.TorusGeometry( Math.random()*50, 3, 6, 16));
   geo.push(new THREE.SphereGeometry(Math.random()*100, 12, 12));
 
   for (let i=0; i<3; i++) {
@@ -53,6 +53,7 @@ function createEnvironment(scene) {
     
     landmark = new THREE.Mesh(geo[Math.floor(Math.random() * geo.length)], tex[Math.floor(Math.random() * tex.length)]);
     landmark.position.set(Math.random() * (max*4 - min*4) + min, Math.random() * 32, -Math.random() * max*4);
+    landmark.rotation.set(new THREE.Vector3( Math.random() * Math.PI / 2, Math.random() * Math.PI / 2, Math.random() * Math.PI / 2));
     scene.add(landmark);
   }
 
