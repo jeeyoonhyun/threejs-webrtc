@@ -45,7 +45,8 @@ function createEnvironment(scene) {
   //floating planes
   // path = new CustomSinCurve( 10 );
   // const starGeo = new THREE.TubeGeometry( path, 4, 0.1, 3, false );
-  const starGeo = new THREE.PlaneGeometry(  Math.random() * 3, 0.02, 1 );
+  // const starGeo = new THREE.PlaneGeometry(  Math.random() * 3, 0.02, 1 );
+  const starGeo = new THREE.SphereGeometry(Math.random() * 3, 0.02, 1);
   for (let i=0; i<1000; i++) {
     star = new THREE.Mesh( starGeo, myMaterial );
     star.position.set(Math.random() * (max - min) + min, Math.random() * 8, -Math.random() * max);
