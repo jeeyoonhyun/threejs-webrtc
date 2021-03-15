@@ -18,6 +18,7 @@ let clients = {};
 
 // Variable to store our three.js scene:
 let glScene;
+let isCollided = false;
 
 // WebRTC Variables:
 const { RTCPeerConnection, RTCSessionDescription } = window;
