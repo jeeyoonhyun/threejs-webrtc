@@ -38,7 +38,7 @@ function createEnvironment(scene) {
   //landmarks
   let planetTexture = new THREE.TextureLoader().load("../assets/texture.png");
   const planetMaterial = new THREE.MeshBasicMaterial( { map: planetTexture } );
-  let planetGeo = new THREE.SphereGeometry(Math.random()*500, 12, 12);
+  let planetGeo = new THREE.SphereGeometry(Math.random()*100, 12, 12);
 
   for (let i=0; i<10; i++) {
     
@@ -51,7 +51,7 @@ function createEnvironment(scene) {
   // path = new CustomSinCurve( 10 );
   // const starGeo = new THREE.TubeGeometry( path, 4, 0.1, 3, false );
   // const starGeo = new THREE.PlaneGeometry(  Math.random() * 3, 0.02, 1 );
-  let myMaterial = new THREE.MeshToonMaterial({ color: 0xffffff, side: THREE.DoubleSide });
+  let myMaterial = new THREE.MeshToonMaterial({ color: 0xffffff });
   const starGeo = new THREE.SphereGeometry(Math.random(), 0.02, 1);
   for (let i=0; i<1000; i++) {
     star = new THREE.Mesh( starGeo, myMaterial );
