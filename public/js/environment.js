@@ -34,10 +34,13 @@ function createEnvironment(scene) {
   pointLight.position.set( 0,200,-1000 );
   scene.add( pointLight );
 
-  // let texture = new THREE.TextureLoader().load("../assets/texture.png");
+  let planetTexture = new THREE.TextureLoader().load("../assets/texture.png");
+  const planetMaterial = new THREE.MeshBasicMaterial( { map: planetTexture } );
+
   let myGeometry = new THREE.SphereGeometry(100, 12, 12);
+
   let myMaterial = new THREE.MeshToonMaterial({ color: 0xffffff, side: THREE.DoubleSide });
-  myMesh = new THREE.Mesh(myGeometry, myMaterial);
+  myMesh = new THREE.Mesh(myGeometry, planetMaterial);
   myMesh.position.set(0, 0, -1000);
   scene.add(myMesh);
 
