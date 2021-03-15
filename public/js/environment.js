@@ -41,7 +41,7 @@ function createEnvironment(scene) {
   const planetMaterial = new THREE.MeshBasicMaterial( { map: planetTexture } );
   let planetGeo = new THREE.SphereGeometry(Math.random()*100, 12, 12);
 
-  for (let i=0; i<2; i++) {
+  for (let i=0; i<3; i++) {
     let planetTexture = new THREE.TextureLoader().load(`../assets/texture${i}.png`);
     tex.push(new THREE.MeshBasicMaterial( { map: planetTexture } ))
   }
