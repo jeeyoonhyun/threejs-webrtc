@@ -1,6 +1,7 @@
 let myMesh;
 let stars = [];
 let star;
+let landmark;
 let max = 500; 
 let min = -500;
 let path;
@@ -34,21 +35,23 @@ function createEnvironment(scene) {
   pointLight.position.set( 0,200,-1000 );
   scene.add( pointLight );
 
+  //landmarks
   let planetTexture = new THREE.TextureLoader().load("../assets/texture.png");
   const planetMaterial = new THREE.MeshBasicMaterial( { map: planetTexture } );
+  let planetGeo = new THREE.SphereGeometry(Math.random()*10, 12, 12);
 
-  let myGeometry = new THREE.SphereGeometry(100, 12, 12);
-
-  let myMaterial = new THREE.MeshToonMaterial({ color: 0xffffff, side: THREE.DoubleSide });
-  myMesh = new THREE.Mesh(myGeometry, planetMaterial);
-  myMesh.position.set(0, 0, -1000);
-  scene.add(myMesh);
-
+  for (let i=0; i<10; i++) {
+    
+    landmark = new THREE.Mesh(planetGeo, planetMaterial);
+    landmark.position.set(Math.random() * (max - min) + min, Math.random() * 8, -Math.random() * max);
+    scene.add(myMesh);
+  }
 
   //floating planes
   // path = new CustomSinCurve( 10 );
   // const starGeo = new THREE.TubeGeometry( path, 4, 0.1, 3, false );
   // const starGeo = new THREE.PlaneGeometry(  Math.random() * 3, 0.02, 1 );
+  let myMaterial = new THREE.MeshToonMaterial({ color: 0xffffff, side: THREE.DoubleSide });
   const starGeo = new THREE.SphereGeometry(Math.random(), 0.02, 1);
   for (let i=0; i<1000; i++) {
     star = new THREE.Mesh( starGeo, myMaterial );
@@ -61,5 +64,5 @@ function createEnvironment(scene) {
 
 
 function updateEnvironment(scene) {
-  myMesh.position.z -= 0.01;
+  // landmark.position.z -= 0.01;
 }
