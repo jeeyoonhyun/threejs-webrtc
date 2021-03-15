@@ -334,6 +334,9 @@ function createLocalVideoElement() {
 
   videoElement.srcObject = videoStream;
   document.body.appendChild(videoElement);
+  const distance = document.createElement("div");
+  distance.id = "distance";
+  document.body.appendChild(distance);
 }
 
 // created <video> element using client ID
@@ -371,7 +374,7 @@ function removeClientVideoElementAndCanvas(_id) {
     videoEl.remove();
   }
 }
-
+//triggering event
 function triggerEvent() {
   if (glScene.playerGroup.position === clients[Object.keys(clients)[0]].desiredPosition) {
     let isCollided = true;  
@@ -380,7 +383,10 @@ function triggerEvent() {
   }
   if (isCollided) {
     console.log('player collided!')
+    document.getElementById("distance").innerHTML = 'collided'
   } else {
     console.log('not collided')
+    document.getElementById("distance").innerHTML = 'not collided'
   }
+  
 }
