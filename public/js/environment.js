@@ -38,12 +38,12 @@ function createEnvironment(scene) {
   //landmarks
   let planetTexture = new THREE.TextureLoader().load("../assets/texture.png");
   const planetMaterial = new THREE.MeshBasicMaterial( { map: planetTexture } );
-  let planetGeo = new THREE.SphereGeometry(Math.random()*1000, 12, 12);
+  let planetGeo = new THREE.SphereGeometry(Math.random()*500, 12, 12);
 
   for (let i=0; i<10; i++) {
     
     landmark = new THREE.Mesh(planetGeo, planetMaterial);
-    landmark.position.set(Math.random() * (max - min) + min, Math.random() * 8, -Math.random() * max);
+    landmark.position.set(Math.random() * (max*4 - min*4) + min, Math.random() * 32, -Math.random() * max*4);
     scene.add(landmark);
   }
 
