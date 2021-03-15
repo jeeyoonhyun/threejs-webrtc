@@ -1,6 +1,7 @@
 let myMesh;
 let stars = [];
 let star;
+let tex = [];
 let landmark;
 let max = 500; 
 let min = -500;
@@ -36,13 +37,18 @@ function createEnvironment(scene) {
   scene.add( pointLight );
 
   //landmarks
-  let planetTexture = new THREE.TextureLoader().load("../assets/texture.png");
+  let planetTexture = new THREE.TextureLoader().load("../assets/texture0.png");
   const planetMaterial = new THREE.MeshBasicMaterial( { map: planetTexture } );
   let planetGeo = new THREE.SphereGeometry(Math.random()*100, 12, 12);
 
+  for (let i=0; i<2; i++) {
+    let planetTexture = new THREE.TextureLoader().load(`../assets/texture${i}.png`);
+    tex.push(new THREE.MeshBasicMaterial( { map: planetTexture } ))
+  }
+
   for (let i=0; i<10; i++) {
     
-    landmark = new THREE.Mesh(planetGeo, planetMaterial);
+    landmark = new THREE.Mesh(planetGeo, tex[Math.floor(Math.random() * tex.length)]);
     landmark.position.set(Math.random() * (max*4 - min*4) + min, Math.random() * 32, -Math.random() * max*4);
     scene.add(landmark);
   }
