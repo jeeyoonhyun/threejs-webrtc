@@ -45,6 +45,9 @@ class Scene {
     // add controls:
     this.controls = new THREE.PlayerControls(this.camera, this.playerGroup);
 
+    //add raycaster:
+    this.setupRaycaster();
+
     //Push the canvas to the DOM
     let domElement = document.getElementById("canvas-container");
     domElement.append(this.renderer.domElement);
@@ -212,14 +215,57 @@ class Scene {
     ];
   }
 
+  //adding a raycaster
+  setupRaycaster() {
+    this.raycaster = new THREE.Raycaster(); 
+    this.mouse = new THREE.Vector2(); //store mouse coordinates
+    //storing previous state for hover interaction
+    this.previousInteractions = [];
+    window.addEventListener( 'mousemove', e => this.onMouseMove(e), false );
+  }
+
+  checkRaycaster() {
+    // reset all previous interactions for hover state:
+    for (let i in this.previousInteractions) {
+      let obj = this.previousInteractions[i];
+      obj.scale.set(1,1,1); //revert scale
+    }
+
+    // update the picking ray with the camera and mouse position
+    // ray starts from camera to mouse
+    this.raycaster.setFromCamera( this.mouse, this.camera );
+  
+    // calculate objects intersecting the picking ray
+    const intersects = this.raycaster.intersectObjects( this.scene.children );
+  
+    for ( let i = 0; i < intersects.length; i ++ ) {
+      //the intersected object becomes red
+      console.log(intersects[i]);
+
+      // intersects[ i ].object.material.color.set( 0xff0000 );
+      intersects[ i ].object.scale.set(1.5,1.5,1.5);
+
+      this.previousInteractions.push(intersects[i].object);
+      
+    }
+  }
+
+  onMouseMove() {
+	// calculate mouse position in normalized device coordinates
+	// (-1 to +1) for both components
+  	this.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	  this.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+  }
+
   //////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////
   // Rendering 🎥
 
-  update() {
+  update() { //update loop
     requestAnimationFrame(() => this.update());
     this.frameCount++;
 
+    this.checkRaycaster(); //update raycaster
     updateEnvironment();
 
     if (this.frameCount % 25 === 0) {
